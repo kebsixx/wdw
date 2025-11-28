@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Arrays</title>
+  </head>
+  <body>
+    <h2>Contoh JavaScript Arrays</h2>
+    <button onclick="tampilkanArray()">Tampilkan Array</button>
+    <button onclick="manipulasiArray()">Manipulasi Array</button>
+    <div id="arrayOutput"></div>
+    <script>
+      let students = ["Budi", "Siti", "Ahmad", "Dewi"];
+      function tampilkanArray() {
+        let output = document.getElementById("arrayOutput");
+        output.innerHTML = `
+            <h3>Array Students:</h3>
+            <p>Isi Array: [${students.join(", ")}]</p>
+            <p>Jumlah Element: ${students.length}</p>
+            <p>Element Pertama: ${students[0]}</p>
+            <p>Element Terakhir: ${students[students.length - 1]}</p>
+        `;
+      }
+      function manipulasiArray() {
+        let output = document.getElementById("arrayOutput");
+        // Manipulasi array
+        students.push("Rina"); // Menambah di akhir
+        students.unshift("Joko"); // Menambah di awal
+        let removed = students.pop(); // Hapus dari akhir
+        output.innerHTML = `
+            <h3>Setelah Manipulasi:</h3>
+            <p>Array setelah push & unshift: [${students.join(", ")}]</p>
+            <p>Element yang dihapus: ${removed}</p>
+            <p>Array diurutkan: [${students.sort().join(", ")}]</p>
+            <p>Array dibalik: [${students.reverse().join(", ")}]</p>
+        `;
+      }
+    </script>
+  </body>
+</html>

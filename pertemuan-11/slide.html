@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh 5: jQuery Effects - Slide & Animate</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .panel {
+        background-color: #f1f1f1;
+        padding: 0 18px;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.2s ease-out;
+      }
+      .accordion {
+        background-color: #eee;
+
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+        margin: 5px 0;
+      }
+      .accordion.active,
+      .accordion:hover {
+        background-color: #ccc;
+      }
+      .animated-box {
+        width: 100px;
+        height: 100px;
+        background-color: #2196f3;
+        position: relative;
+        margin: 20px 0;
+      }
+      .controls {
+        margin: 20px 0;
+      }
+      button {
+        margin: 5px;
+        padding: 8px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contoh jQuery Effects - Slide & Animate</h1>
+      <h2>Accordion dengan Slide Effect</h2>
+      <button class="accordion">Bagian 1</button>
+      <div class="panel">
+        <p>
+          Ini adalah konten untuk bagian 1. Konten ini akan muncul dengan efek
+          slide.
+        </p>
+      </div>
+      <button class="accordion">Bagian 2</button>
+      <div class="panel">
+        <p>
+          Ini adalah konten untuk bagian 2. Konten ini juga akan muncul dengan
+          efek slide.
+        </p>
+      </div>
+      <h2>Animasi Kustom</h2>
+      <div class="controls">
+        <button id="animateLeft">Animate Kiri</button>
+        <button id="animateRight">Animate Kanan</button>
+
+        <button id="animateSize">Ubah Ukuran</button>
+        <button id="resetAnim">Reset</button>
+      </div>
+      <div class="animated-box" id="animBox"></div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // Slide effects untuk accordion
+        $(".accordion").click(function () {
+          $(this).toggleClass("active");
+          $(this).next(".panel").slideToggle(300);
+        });
+        // Custom animations
+        $("#animateLeft").click(function () {
+          $("#animBox").animate({ left: "-=50px" }, 500);
+        });
+        $("#animateRight").click(function () {
+          $("#animBox").animate({ left: "+=50px" }, 500);
+        });
+        $("#animateSize").click(function () {
+          $("#animBox").animate(
+            {
+              width: "+=50px",
+              height: "+=30px",
+            },
+            500
+          );
+        });
+        $("#resetAnim").click(function () {
+          $("#animBox").animate(
+            {
+              left: 0,
+              width: "100px",
+              height: "100px",
+            },
+            500
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

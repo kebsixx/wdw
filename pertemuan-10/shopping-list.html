@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping List Manager</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  </head>
+  <body class="bg-gradient bg-light">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card shadow rounded-4 border-0">
+            <div
+              class="card-header bg-primary bg-gradient text-white rounded-top-4">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-cart4 fs-3 me-2"></i>
+                <h3 class="mb-0">Shopping List Manager</h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <form id="shopping-form" class="mb-4">
+                <div class="input-group input-group-lg shadow-sm">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-plus-circle text-primary"></i>
+                  </span>
+                  <input
+                    type="text"
+                    id="item-input"
+                    class="form-control border-start-0"
+                    placeholder="Enter item name"
+                    required />
+                  <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-plus-lg me-1"></i> Add
+                  </button>
+                </div>
+              </form>
+
+              <div class="mb-4">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="fw-bold">
+                    <i class="bi bi-list-check me-2"></i>Your Shopping List
+                  </h5>
+                  <span
+                    class="badge bg-primary rounded-pill px-3 py-2 fs-6"
+                    id="item-count"
+                    >0 items</span
+                  >
+                </div>
+                <ul
+                  id="shopping-list"
+                  class="list-group list-group-flush shadow-sm rounded-3"></ul>
+              </div>
+
+              <div class="mt-4 p-3 bg-light rounded-3">
+                <h5 class="fw-bold">
+                  <i class="bi bi-bag-check me-2"></i>Remaining Items
+                </h5>
+                <p id="remaining-items" class="mb-0 ps-4 fst-italic text-muted">
+                  No items to purchase
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let shoppingList = [];
+
+      const shoppingForm = document.getElementById("shopping-form");
+      const itemInput = document.getElementById("item-input");
+      const shoppingListEl = document.getElementById("shopping-list");
+      const itemCountEl = document.getElementById("item-count");
+      const remainingItemsEl = document.getElementById("remaining-items");
+
+      shoppingForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const itemName = itemInput.value.trim();
+
+        if (itemName.length === 0) {
+          return;
+        }
+
+        const newItem = {
+          id: Date.now().toString(),
+          name: itemName,
+          completed: false,
+        };
+
+        shoppingList.push(newItem);
+
+        itemInput.value = "";
+
+        renderShoppingList();
+      });
+
+      function renderShoppingList() {
+        shoppingListEl.innerHTML = "";
+
+        if (shoppingList.length === 0) {
+          const emptyMsg = document.createElement("li");
+          emptyMsg.className = "list-group-item text-center py-4 text-muted";
+          emptyMsg.innerHTML =
+            '<i class="bi bi-inbox fs-4 mb-2 d-block"></i>Your shopping list is empty';
+          shoppingListEl.appendChild(emptyMsg);
+        }
+
+        for (let i = 0; i < shoppingList.length; i++) {
+          const item = shoppingList[i];
+
+          const li = document.createElement("li");
+          li.className =
+            "list-group-item d-flex justify-content-between align-items-center py-3 border-bottom";
+
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "d-flex align-items-center";
+
+          const checkIcon = document.createElement("i");
+          if (item.completed) {
+            checkIcon.className = "bi bi-check-circle-fill text-success me-3";
+          } else {
+            checkIcon.className = "bi bi-circle text-secondary me-3";
+          }
+
+          const span = document.createElement("span");
+          span.textContent = item.name;
+          if (item.completed) {
+            span.className = "text-decoration-line-through text-muted";
+          }
+
+          const actions = document.createElement("div");
+
+          const toggleBtn = document.createElement("button");
+          toggleBtn.className =
+            "btn btn-sm me-2 " +
+            (item.completed ? "btn-outline-success" : "btn-outline-secondary");
+          toggleBtn.innerHTML =
+            '<i class="bi bi-' +
+            (item.completed ? "check-circle" : "circle") +
+            '"></i>';
+          toggleBtn.title = item.completed
+            ? "Mark as incomplete"
+            : "Mark as complete";
+          toggleBtn.addEventListener("click", function () {
+            toggleItem(item.id);
+          });
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.className = "btn btn-sm btn-outline-danger";
+          deleteBtn.innerHTML = '<i class="bi bi-trash"></i>';
+          deleteBtn.title = "Remove item";
+          deleteBtn.addEventListener("click", function () {
+            removeItem(item.id);
+          });
+
+          contentDiv.appendChild(checkIcon);
+          contentDiv.appendChild(span);
+
+          actions.appendChild(toggleBtn);
+          actions.appendChild(deleteBtn);
+
+          li.appendChild(contentDiv);
+          li.appendChild(actions);
+
+          shoppingListEl.appendChild(li);
+        }
+
+        updateItemCount();
+
+        updateRemainingItems();
+      }
+
+      function toggleItem(id) {
+        for (let i = 0; i < shoppingList.length; i++) {
+          if (shoppingList[i].id === id) {
+            shoppingList[i].completed = !shoppingList[i].completed;
+            break;
+          }
+        }
+
+        renderShoppingList();
+      }
+
+      function removeItem(id) {
+        shoppingList = shoppingList.filter((item) => item.id !== id);
+
+        renderShoppingList();
+      }
+
+      function updateItemCount() {
+        const count = shoppingList.length;
+        const completedCount = shoppingList.filter(
+          (item) => item.completed
+        ).length;
+
+        if (count === 0) {
+          itemCountEl.textContent = "0 items";
+        } else {
+          itemCountEl.innerHTML = `${count} <small class="ms-1">(${completedCount} done)</small>`;
+        }
+      }
+
+      function updateRemainingItems() {
+        const remainingItems = shoppingList.filter((item) => !item.completed);
+
+        if (remainingItems.length === 0) {
+          if (shoppingList.length === 0) {
+            remainingItemsEl.innerHTML =
+              '<span class="text-muted">No items to purchase</span>';
+          } else {
+            remainingItemsEl.innerHTML =
+              '<span class="text-success fw-bold"><i class="bi bi-check-all me-1"></i>All items purchased!</span>';
+          }
+          return;
+        }
+
+        let remainingText = "";
+        for (let i = 0; i < remainingItems.length; i++) {
+          remainingText +=
+            '<span class="badge bg-light text-dark me-2 mb-1 py-2 px-3">' +
+            remainingItems[i].name +
+            "</span>";
+        }
+
+        remainingItemsEl.innerHTML = remainingText;
+      }
+
+      renderShoppingList();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh 3: jQuery Event Methods</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .event-area {
+        height: 150px;
+        border: 2px dashed #ccc;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .log {
+        height: 100px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        overflow-y: auto;
+        font-family: monospace;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contoh jQuery Event Methods</h1>
+      <div class="event-area" id="mouseArea">Area Interaksi Mouse</div>
+      <input
+        type="text"
+        id="textInput"
+        placeholder="Ketik sesuatu di sini..." />
+      <div class="log" id="eventLog">Log Event akan muncul di sini...</div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // Event methods
+        $("#mouseArea")
+          .mouseenter(function () {
+            logEvent("Mouse masuk ke area");
+            $(this).css("background-color", "#e1f5fe");
+          })
+          .mouseleave(function () {
+            logEvent("Mouse keluar dari area");
+            $(this).css("background-color", "white");
+          })
+          .click(function () {
+            logEvent("Area diklik");
+          })
+          .dblclick(function () {
+            logEvent("Area diklik dua kali");
+          });
+        $("#textInput")
+          .focus(function () {
+            logEvent("Input text mendapat fokus");
+          })
+          .blur(function () {
+            logEvent("Input text kehilangan fokus");
+          })
+          .keypress(function () {
+            logEvent("Tombol ditekan di input text");
+          });
+        function logEvent(message) {
+          var timestamp = new Date().toLocaleTimeString();
+          $("#eventLog").prepend(
+            "<div>[" + timestamp + "] " + message + "</div>"
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

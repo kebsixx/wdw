@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Operators</title>
+  </head>
+  <body>
+    <h2>Contoh JavaScript Operators</h2>
+    <div id="calculator">
+      <input type="number" id="num1" placeholder="Angka pertama" />
+      <input type="number" id="num2" placeholder="Angka kedua" />
+      <button onclick="hitung()">Hitung</button>
+      <div id="result"></div>
+    </div>
+    <script>
+      function hitung() {
+        let a = parseInt(document.getElementById("num1").value);
+        let b = parseInt(document.getElementById("num2").value);
+        let penjumlahan = a + b;
+        let pengurangan = a - b;
+        let perkalian = a * b;
+        let pembagian = a / b;
+        let modulus = a % b;
+        document.getElementById("result").innerHTML = `
+            <p>Penjumlahan: ${a} + ${b} = ${penjumlahan}</p>
+            <p>Pengurangan: ${a} - ${b} = ${pengurangan}</p>
+            <p>Perkalian: ${a} × ${b} = ${perkalian}</p>
+            <p>Pembagian: ${a} / ${b} = ${pembagian}</p>
+            <p>Modulus: ${a} % ${b} = ${modulus}</p>
+        `;
+      }
+    </script>
+  </body>
+</html>

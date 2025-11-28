@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript String</title>
+  </head>
+  <body>
+    <h2>Contoh JavaScript String</h2>
+    <input
+      type="text"
+      id="textInput"
+      placeholder="Masukkan teks"
+      style="width: 300px" />
+    <button onclick="prosesString()">Proses String</button>
+    <div id="stringOutput"></div>
+    <script>
+      function prosesString() {
+        let teks = document.getElementById("textInput").value;
+        let output = document.getElementById("stringOutput");
+        if (teks === "") {
+          output.innerHTML =
+            "<p style='color: red;'>Masukkan teks terlebih dahulu!</p>";
+          return;
+        }
+        output.innerHTML = `
+            <p>Teks Asli: <strong>${teks}</strong></p>
+            <p>Panjang Teks: ${teks.length} karakter</p>
+            <p>Uppercase: ${teks.toUpperCase()}</p>
+            <p>Lowercase: ${teks.toLowerCase()}</p>
+            <p>Karakter pertama: ${teks.charAt(0)}</p>
+            <p>3 Karakter pertama: ${teks.substring(0, 3)}</p>
+            <p>Mengandung 'JavaScript': ${
+              teks.includes("JavaScript") ? "Ya" : "Tidak"
+            }</p>
+        `;
+      }
+    </script>
+  </body>
+</html>

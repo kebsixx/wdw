@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh 4: jQuery Effects - Fade</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: #4caf50;
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+      }
+      .controls {
+        text-align: center;
+        margin: 20px 0;
+      }
+      button {
+        margin: 5px;
+        padding: 8px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contoh jQuery Effects - Fade</h1>
+      <div class="controls">
+        <button id="fadeIn">Fade In</button>
+        <button id="fadeOut">Fade Out</button>
+        <button id="fadeToggle">Fade Toggle</button>
+        <button id="fadeTo">Fade To 0.5</button>
+      </div>
+      <div class="box" id="fadeBox">Box dengan Efek Fade</div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // Fade effects
+        $("#fadeIn").click(function () {
+          $("#fadeBox").fadeIn(1000);
+        });
+        $("#fadeOut").click(function () {
+          $("#fadeBox").fadeOut(1000);
+        });
+        $("#fadeToggle").click(function () {
+          $("#fadeBox").fadeToggle(1000);
+        });
+        $("#fadeTo").click(function () {
+          $("#fadeBox").fadeTo(1000, 0.5);
+        });
+      });
+    </script>
+  </body>
+</html>

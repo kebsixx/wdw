@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Layout Elements</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      header,
+      nav,
+      main,
+      aside,
+      footer {
+        padding: 20px;
+        margin: 10px;
+        border-radius: 5px;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+      }
+      nav {
+        background-color: #333;
+        color: white;
+      }
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+      }
+      main {
+        background-color: #f1f1f1;
+        min-height: 300px;
+      }
+      aside {
+        background-color: #ddd;
+      }
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Header - Judul Website</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Tentang</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h2>Konten Utama</h2>
+      <p>Ini adalah area konten utama website.</p>
+      <article>
+        <h3>Artikel 1</h3>
+        <p>Isi artikel pertama...</p>
+      </article>
+      <article>
+        <h3>Artikel 2</h3>
+        <p>Isi artikel kedua...</p>
+      </article>
+    </main>
+    <aside>
+      <h3>Sidebar</h3>
+      <p>Informasi tambahan atau widget.</p>
+    </aside>
+    <footer>
+      <p>Footer - Hak Cipta &copy; 2023</p>
+    </footer>
+  </body>
+</html>

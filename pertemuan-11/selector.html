@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh 2: jQuery Selectors</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .item {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+      }
+      .selected {
+        background-color: #e0f7fa;
+        border-color: #00bcd4;
+      }
+      .highlight {
+        background-color: #fff9c4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contoh jQuery Selectors</h1>
+      <ul id="list">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item special">Item 3 (Special)</li>
+        <li class="item">Item 4</li>
+        <li class="item special">Item 5 (Special)</li>
+      </ul>
+      <button id="selectAll">Pilih Semua</button>
+      <button id="selectSpecial">Pilih Khusus</button>
+      <button id="selectFirst">Pilih Pertama</button>
+      <button id="reset">Reset</button>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // Berbagai jenis jQuery selectors
+        $("#selectAll").click(function () {
+          $(".item").addClass("selected");
+        });
+        $("#selectSpecial").click(function () {
+          $(".special").addClass("highlight");
+        });
+        $("#selectFirst").click(function () {
+          $(".item:first").css("font-weight", "bold");
+        });
+        $("#reset").click(function () {
+          $(".item")
+            .removeClass("selected highlight")
+            .css("font-weight", "normal");
+        });
+      });
+    </script>
+  </body>
+</html>

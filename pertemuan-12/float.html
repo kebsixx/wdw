@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Float Layout</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      nav {
+        background-color: #ddd;
+        padding: 15px;
+      }
+      nav ul {
+        list-style-type: none;
+      }
+      nav li {
+        display: inline;
+        margin-right: 20px;
+      }
+      .content {
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .main-content {
+        width: 70%;
+        float: left;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      .sidebar {
+        width: 28%;
+        float: right;
+        padding: 20px;
+        background-color: #e9e9e9;
+      }
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        clear: both;
+      }
+      .box {
+        width: 30%;
+        float: left;
+        margin: 1.66%;
+        padding: 20px;
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Website dengan Float Layout</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Produk</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Tentang Kami</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="content">
+        <div class="main-content">
+          <h2>Konten Utama</h2>
+          <p>Ini adalah contoh penggunaan CSS float untuk membuat layout.</p>
+          <div class="box">Kotak 1</div>
+          <div class="box">Kotak 2</div>
+          <div class="box">Kotak 3</div>
+        </div>
+        <div class="sidebar">
+          <h3>Sidebar</h3>
+          <p>Ini adalah sidebar yang ditempatkan menggunakan float: right.</p>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>Footer - Hak Cipta &copy; 2023</p>
+    </footer>
+  </body>
+</html>

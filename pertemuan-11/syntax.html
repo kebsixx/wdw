@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh 1: jQuery Syntax</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .box {
+        padding: 20px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+      }
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contoh jQuery Syntax Dasar</h1>
+      <div class="box" id="box1">
+        <p>Ini adalah contoh penggunaan jQuery syntax dasar.</p>
+        <button id="btn1">Ubah Warna</button>
+        <button id="btn2">Sembunyikan/Tampilkan</button>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // jQuery syntax: $(selector).action()
+        $("#btn1").click(function () {
+          $("#box1").toggleClass("highlight");
+        });
+        $("#btn2").click(function () {
+          $("#box1 p").toggle();
+        });
+      });
+    </script>
+  </body>
+</html>
